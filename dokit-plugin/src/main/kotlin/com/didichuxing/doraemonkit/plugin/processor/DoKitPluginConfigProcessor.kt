@@ -135,25 +135,26 @@ class DoKitPluginConfigProcessor(val project: Project) : VariantProcessor {
 
         "===project.name:${project.name}".println()
         //查找application module下的配置
-        //查找application module下的配置
         if (variant is ApplicationVariant) {
 
             project.tasks.find {
-                //"===task Name is ${it.name}".println()
-                it.name == "processDebugManifest"
+                "===task Name is ${it.name}".println()
+                it.name == "processDailyDebugManifest"
             }?.let { transformTask ->
                 transformTask.doLast {
-                    "===processDebugManifest task has executed===".println()
+                    "===${transformTask.name} task has executed===".println()
                     //查找AndroidManifest.xml 文件路径
                     variant.mergedManifests.forEach { manifest ->
-                        val parser = SAXParserFactory.newInstance().newSAXParser()
-                        val handler = DoKitComponentHandler()
-                        "App Manifest path====>$manifest".println()
-                        parser.parse(manifest, handler)
-                        "App PackageName is====>${handler.appPackageName}".println()
-                        "App Application path====>${handler.applications}".println()
-                        DoKitExtUtil.setAppPackageName(handler.appPackageName)
-                        DoKitExtUtil.setApplications(handler.applications)
+                        if(manifest.path.contains("dailyDebug")) {
+                            val parser = SAXParserFactory.newInstance().newSAXParser()
+                            val handler = DoKitComponentHandler()
+                            "App Manifest path====>$manifest".println()
+                            parser.parse(manifest, handler)
+                            "App PackageName is====>${handler.appPackageName}".println()
+                            "App Application path====>${handler.applications}".println()
+                            DoKitExtUtil.setAppPackageName(handler.appPackageName)
+                            DoKitExtUtil.setApplications(handler.applications)
+                        }
                     }
 
                     //读取插件配置
