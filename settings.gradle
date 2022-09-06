@@ -1,0 +1,3 @@
+rootProject.name = "DokitSample"
+include ':app'
+include ':dokit-plugin'

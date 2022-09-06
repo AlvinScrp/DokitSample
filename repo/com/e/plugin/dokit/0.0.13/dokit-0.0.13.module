@@ -1,0 +1,111 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "DokitSample",
+    "module": "dokit-plugin",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "n2d2cw4fdnasvh4afneqmpxeki"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.didiglobal.booster",
+          "module": "booster-api",
+          "version": {
+            "requires": "4.10.0"
+          }
+        },
+        {
+          "group": "com.didiglobal.booster",
+          "module": "booster-transform-asm",
+          "version": {
+            "requires": "4.10.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.31"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dokit-0.0.13.jar",
+          "url": "dokit-0.0.13.jar",
+          "size": 143148,
+          "sha512": "e6ad9e56f219bb5e23cb172ff560f6cc04fcbb585b135d7102be7bcd8af9d8256e02b039044dc1de2e45244520275d3db6f80c8b7ba28f13df3d3ccdc3455722",
+          "sha256": "ee4075b39d0ff148975a9e25be308f7121606a6fe5e695edc2045423d5bb3f34",
+          "sha1": "863c012d3f636f7447a877e17892b4a8dca53ffe",
+          "md5": "d96a2f96cda649fa9fac8ded13b5dfb9"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.didiglobal.booster",
+          "module": "booster-api",
+          "version": {
+            "requires": "4.10.0"
+          }
+        },
+        {
+          "group": "com.didiglobal.booster",
+          "module": "booster-transform-asm",
+          "version": {
+            "requires": "4.10.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.31"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dokit-0.0.13.jar",
+          "url": "dokit-0.0.13.jar",
+          "size": 143148,
+          "sha512": "e6ad9e56f219bb5e23cb172ff560f6cc04fcbb585b135d7102be7bcd8af9d8256e02b039044dc1de2e45244520275d3db6f80c8b7ba28f13df3d3ccdc3455722",
+          "sha256": "ee4075b39d0ff148975a9e25be308f7121606a6fe5e695edc2045423d5bb3f34",
+          "sha1": "863c012d3f636f7447a877e17892b4a8dca53ffe",
+          "md5": "d96a2f96cda649fa9fac8ded13b5dfb9"
+        }
+      ]
+    }
+  ]
+}

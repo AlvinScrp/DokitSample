@@ -1,0 +1,86 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+apply plugin:  'maven-publish'
+apply plugin: 'java-gradle-plugin'
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs += []
+        }
+        kotlin {
+            srcDirs += ['src/main/kotlin', 'src/main/java']
+        }
+    }
+
+
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+
+dependencies {
+    compileOnly gradleApi()
+    compileOnly localGroovy()
+
+    //版本不能太高 否则会跟项目的as版本冲突
+    compileOnly "com.android.tools.build:gradle:4.2.2"
+    /* 👇👇👇👇 引用这两个模块 👇👇👇👇 */
+    api "com.didiglobal.booster:booster-api:4.10.0"
+    api "com.didiglobal.booster:booster-transform-asm:4.10.0"
+}
+
+/**
+ * 删除指定目录下的文件
+ */
+task deleteSource(type: Delete) {
+    doLast {
+        delete './src/main/kotlin'
+    }
+}
+
+
+repositories {
+    google()
+//    jcenter()
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        // 声明插件信息，这里的 hello 名字随意
+        hello {
+            // 插件ID
+            id = 'com.e.dokit'
+            // 插件的实现类
+            implementationClass = 'com.didichuxing.doraemonkit.plugin.DoKitPlugin'
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            // $rootDir 表示你项目的根目录
+            url = "$rootDir/repo"
+        }
+    }
+    publications {
+        // 这里的 hello 可以任意命名
+        hello(MavenPublication) {
+            // 插件的组ID，建议设置为插件的包名
+            groupId = 'com.e.plugin'
+            // 翻译过来是 工件ID，我的理解是插件的名字
+            artifactId = 'dokit'
+            version = '0.0.13'
+            // 组件类型，我们的插件其实就是Java组件
+            from components.java
+        }
+    }
+}
+
+
+
