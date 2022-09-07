@@ -75,7 +75,7 @@ publishing {
             groupId = 'com.e.plugin'
             // 翻译过来是 工件ID，我的理解是插件的名字
             artifactId = 'dokit'
-            version = '0.0.13'
+            version = '0.0.17'
             // 组件类型，我们的插件其实就是Java组件
             from components.java
         }

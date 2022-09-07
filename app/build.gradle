@@ -29,16 +29,16 @@ android {
         jvmTarget = '1.8'
     }
 
-    flavorDimensions "environment"
+//    flavorDimensions "environment"
 
-    productFlavors {
-        // 日常测试
-        daily {}
-        // 灰度
-        gray {}
-        // 线上
-        online {}
-    }
+//    productFlavors {
+//        // 日常测试
+//        daily {}
+//        // 灰度
+//        gray {}
+//        // 线上
+//        online {}
+//    }
 }
 
 dependencies {

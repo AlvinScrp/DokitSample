@@ -44,19 +44,19 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib-jdk8",
           "version": {
-            "requires": "1.5.31"
+            "requires": "1.4.32"
           }
         }
       ],
       "files": [
         {
-          "name": "dokit-0.0.12.jar",
-          "url": "dokit-0.0.12.jar",
-          "size": 143382,
-          "sha512": "4d94f492c1b78df187e49ff812c268ff7eed1eb60b97b834631ea30d6f770f950c42bd074e12a7d663b062247568ca500a8c9532c32eca6464c273f8612f970c",
-          "sha256": "c1c3b202d17aea56901c8d11f047e96467db318cb5614c42f7187de0c7d2363a",
-          "sha1": "4ef90c9e9e88455b8de700a79b92ab220bef5d3a",
-          "md5": "659827d81f7bd4e2737bd83aa4aaa4b6"
+          "name": "dokit-0.0.17.jar",
+          "url": "dokit-0.0.17.jar",
+          "size": 157050,
+          "sha512": "c39f6254138c68ee7c79f5543cbf54d31433176256f1dc3296dc7f5ab505b6bf6afb6554d2b194e491610563b9ffbc91e6c0883f1fa70631cc84d0a5adc46747",
+          "sha256": "c873c71f2c7f1e30352716fe20f044abbe39362b9f582bf0d42ebdcae7fa384e",
+          "sha1": "c52523636fc8bde9bbf7af3e24df8bb6e9e4457e",
+          "md5": "616009131f6574d84e32c845a20e528e"
         }
       ]
     },
@@ -90,19 +90,19 @@
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib-jdk8",
           "version": {
-            "requires": "1.5.31"
+            "requires": "1.4.32"
           }
         }
       ],
       "files": [
         {
-          "name": "dokit-0.0.12.jar",
-          "url": "dokit-0.0.12.jar",
-          "size": 143382,
-          "sha512": "4d94f492c1b78df187e49ff812c268ff7eed1eb60b97b834631ea30d6f770f950c42bd074e12a7d663b062247568ca500a8c9532c32eca6464c273f8612f970c",
-          "sha256": "c1c3b202d17aea56901c8d11f047e96467db318cb5614c42f7187de0c7d2363a",
-          "sha1": "4ef90c9e9e88455b8de700a79b92ab220bef5d3a",
-          "md5": "659827d81f7bd4e2737bd83aa4aaa4b6"
+          "name": "dokit-0.0.17.jar",
+          "url": "dokit-0.0.17.jar",
+          "size": 157050,
+          "sha512": "c39f6254138c68ee7c79f5543cbf54d31433176256f1dc3296dc7f5ab505b6bf6afb6554d2b194e491610563b9ffbc91e6c0883f1fa70631cc84d0a5adc46747",
+          "sha256": "c873c71f2c7f1e30352716fe20f044abbe39362b9f582bf0d42ebdcae7fa384e",
+          "sha1": "c52523636fc8bde9bbf7af3e24df8bb6e9e4457e",
+          "md5": "616009131f6574d84e32c845a20e528e"
         }
       ]
     }

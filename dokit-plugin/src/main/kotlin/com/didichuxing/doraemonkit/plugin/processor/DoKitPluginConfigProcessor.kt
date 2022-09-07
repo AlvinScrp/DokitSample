@@ -3,7 +3,6 @@ package com.didichuxing.doraemonkit.plugin.processor
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.api.ApplicationVariant
 import com.android.build.gradle.api.BaseVariant
-import com.android.build.gradle.internal.pipeline.TransformTask
 import com.didichuxing.doraemonkit.plugin.*
 import com.didichuxing.doraemonkit.plugin.extension.DoKitExt
 import com.didiglobal.booster.gradle.dependencies
@@ -11,12 +10,9 @@ import com.didiglobal.booster.gradle.getAndroid
 import com.didiglobal.booster.gradle.mergedManifests
 import com.didiglobal.booster.gradle.project
 import com.didiglobal.booster.task.spi.VariantProcessor
-import com.didiglobal.booster.transform.ArtifactManager
-import com.didiglobal.booster.transform.artifacts
-import com.didiglobal.booster.transform.util.ComponentHandler
 import org.gradle.api.Project
 import org.gradle.api.artifacts.result.ResolvedArtifactResult
-import java.lang.NullPointerException
+import java.util.regex.Pattern
 import javax.xml.parsers.SAXParserFactory
 
 /**
@@ -67,7 +63,10 @@ class DoKitPluginConfigProcessor(val project: Project) : VariantProcessor {
                         DoKitExtUtil.HAS_DOKIT_TCP_HOOK_DJ = true
                     }
 
-                    if (thirdLibInfo.variant.contains("dokitx-gps-mock") || thirdLibInfo.variant.contains("dokit-gps-mock")){
+                    if (thirdLibInfo.variant.contains("dokitx-gps-mock") || thirdLibInfo.variant.contains(
+                            "dokit-gps-mock"
+                        )
+                    ) {
                         DoKitExtUtil.DOKIT_GPS_MOCK_INCLUDE = true;
                     }
 //                    "thirdLibInfo.variant===>${thirdLibInfo.variant}".println()
@@ -84,7 +83,10 @@ class DoKitPluginConfigProcessor(val project: Project) : VariantProcessor {
                         DoKitExtUtil.HAS_DOKIT_TCP_HOOK_DJ = true
                     }
 
-                    if (thirdLibInfo.variant.contains("dokitx-gps-mock") || thirdLibInfo.variant.contains("dokit-gps-mock")){
+                    if (thirdLibInfo.variant.contains("dokitx-gps-mock") || thirdLibInfo.variant.contains(
+                            "dokit-gps-mock"
+                        )
+                    ) {
                         DoKitExtUtil.DOKIT_GPS_MOCK_INCLUDE = true;
                     }
 
@@ -134,27 +136,33 @@ class DoKitPluginConfigProcessor(val project: Project) : VariantProcessor {
         }
 
         "===project.name:${project.name}".println()
-        //查找application module下的配置
-        if (variant is ApplicationVariant) {
 
-            project.tasks.find {
-                "===task Name is ${it.name}".println()
-                it.name == "processDailyDebugManifest"
+        if (variant is ApplicationVariant) {
+            var task = project.tasks.find {
+                var matchTask = Pattern.matches("^process([\\s\\S]*)DebugManifest$", it.name)
+                if (matchTask) {
+                    "===task Name is ${it.name}".println()
+                }
+                matchTask
+            }
+            task?.takeIf {
+                it.name.equals("process${firstUpperCase(variant.name)}Manifest")
             }?.let { transformTask ->
                 transformTask.doLast {
                     "===${transformTask.name} task has executed===".println()
+                    "===  variant.name ${variant.name}".println()
                     //查找AndroidManifest.xml 文件路径
                     variant.mergedManifests.forEach { manifest ->
-                        if(manifest.path.contains("dailyDebug")) {
-                            val parser = SAXParserFactory.newInstance().newSAXParser()
-                            val handler = DoKitComponentHandler()
-                            "App Manifest path====>$manifest".println()
-                            parser.parse(manifest, handler)
-                            "App PackageName is====>${handler.appPackageName}".println()
-                            "App Application path====>${handler.applications}".println()
-                            DoKitExtUtil.setAppPackageName(handler.appPackageName)
-                            DoKitExtUtil.setApplications(handler.applications)
-                        }
+                        "App Manifest path====>$manifest".println()
+//                        if (manifest.path.contains("dailyDebug")) {
+                        val parser = SAXParserFactory.newInstance().newSAXParser()
+                        val handler = DoKitComponentHandler()
+                        parser.parse(manifest, handler)
+                        "App PackageName is====>${handler.appPackageName}".println()
+                        "App Application path====>${handler.applications}".println()
+                        DoKitExtUtil.setAppPackageName(handler.appPackageName)
+                        DoKitExtUtil.setApplications(handler.applications)
+//                        }
                     }
 
                     //读取插件配置
@@ -165,11 +173,13 @@ class DoKitPluginConfigProcessor(val project: Project) : VariantProcessor {
                     }
                 }
             }
-
         } else {
             "${variant.project.name}-不建议在Library Module下引入dokit插件".println()
         }
+    }
 
+    private fun firstUpperCase(temp: String): String {
+        return temp.substring(0, 1).toUpperCase() + temp.substring(1)
     }
 
 
